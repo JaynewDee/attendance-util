@@ -1,6 +1,8 @@
 const runBtn = document.getElementById("run-btn");
 const studentCount = document.getElementById("student-count-input");
 
+window.addEventListener("keydown", (e) => e.key === "Enter" && runBtn.click());
+
 runBtn.addEventListener("click", async (e) => {
   const numStudents = studentCount.value;
   window.close();

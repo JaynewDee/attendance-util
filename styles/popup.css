@@ -6,7 +6,6 @@ body {
 }
 
 .popup-container {
-  height: 500px;
   width: 300px;
   overflow-y: auto;
   padding: 1rem;
@@ -15,8 +14,43 @@ body {
 #title {
   font-style: italic;
   font-size: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+label {
+  margin-right: 1rem;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#student-count-input {
+  width: 5rem;
+  font-size: 1.33rem;
 }
 
 #run-btn {
   cursor: pointer;
+  background: none;
+  color: white;
+  margin: 2rem auto;
+  font-style: italic;
+  border-radius: 3px;
+  padding: 0.66rem 1rem;
+  transition: all 0.33s;
+}
+
+#run-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+}
+
+.popup-container {
+  height: 500px;
+  width: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+#title {
+  font-style: italic;
+  font-size: 2rem;
+}
+
+#run-btn {
+}

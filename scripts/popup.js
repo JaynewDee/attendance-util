@@ -1,19 +1,18 @@
 const runBtn = document.getElementById("run-btn");
+const studentCount = document.getElementById("student-count-input");
 
 runBtn.addEventListener("click", async (e) => {
-  e.stopPropagation();
-  e.stopImmediatePropagation();
-  e.preventDefault();
-  // window.close();
+  const numStudents = studentCount.value;
+  window.close();
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    func: takeAttendance
+    func: takeAttendance,
+    args: [numStudents]
   });
 });
 
-const takeAttendance = () => {
-  const numStudents = 48;
+const takeAttendance = (numStudents) => {
   chrome.runtime.sendMessage("init");
 
   let i = 0;
@@ -22,5 +21,5 @@ const takeAttendance = () => {
     i++;
   }
 
-  chrome.runtime.sendMessage("save");
+  chrome.runtime.sendMessage("cleanup");
 };

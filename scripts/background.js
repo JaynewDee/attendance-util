@@ -1,3 +1,6 @@
+const attachDebugger = (tabId) => chrome.debugger.attach({ tabId }, "1.0");
+const detachDebugger = (tabId) => chrome.debugger.detach({ tabId });
+
 const useTab = (tabId) =>
   chrome.debugger.sendCommand({ tabId }, "Input.dispatchKeyEvent", {
     type: "keyDown",
@@ -10,64 +13,37 @@ const useArrowDown = (tabId) =>
     key: "ArrowDown"
   });
 
-const saveAttendance = (tabId) => {
-  useArrowDown(tabId);
+const useEnter = (tabId) =>
   chrome.debugger.sendCommand({ tabId }, "Input.dispatchKeyEvent", {
     type: "keyDown",
     key: "Enter"
   });
+
+const saveAttendance = (tabId) => {
+  useTab(tabId);
+  detachDebugger(tabId);
 };
 
-const attachDebugger = (tabId) => chrome.debugger.attach({ tabId }, "1.0");
-const detachDebugger = (tabId) => chrome.debugger.detach({ tabId });
+const useCycle = (tabId) => {
+  useTab(tabId);
+  useTab(tabId);
+  useArrowDown(tabId);
+};
 
-//
+const initialize = (tabId) => {
+  attachDebugger(tabId);
+  useTab(tabId);
+  useTab(tabId);
+};
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   chrome.tabs.query({ active: true }, (tabs) => {
     const tabId = tabs[0].id;
     const messageTypes = {
-      attach: attachDebugger,
-      pressTab: useTab,
-      pressDown: useArrowDown,
-      save: saveAttendance,
-      detach: detachDebugger
+      init: initialize,
+      cycle: useCycle,
+      save: saveAttendance
     };
     return messageTypes[message](tabId);
   });
-
-  // if (message.attach) {
-  //   chrome.tabs.query({ active: true }, function (tabs) {
-  //     const tabId = tabs[0].id;
-  //     attachDebugger(tabId);
-  //   });
-  // }
-
-  // if (message.pressTab) {
-  //   chrome.tabs.query({ active: true }, function (tabs) {
-  //     const tabId = tabs[0].id;
-  //     useTab(tabId);
-  //   });
-  // }
-
-  // if (message.pressDown) {
-  //   chrome.tabs.query({ active: true }, (tabs) => {
-  //     const tabId = tabs[0].id;
-  //     useArrowDown(tabId);
-  //   });
-  // }
-
-  // if (message.save) {
-  //   chrome.tabs.query({ active: true }, (tabs) => {
-  //     const tabId = tabs[0].id;
-  //     useArrowDown(tabId);
-  //     pressEnter(tabId);
-  //   });
-  // }
-  // if (message.detach) {
-  //   chrome.tabs.query({ active: true }, (tabs) => {
-  //     const tabId = tabs[0].id;
-  //     detachDebugger(tabId);
-  //   });
-  // }
 });

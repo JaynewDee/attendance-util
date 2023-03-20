@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.popup-container {
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+#title {
+  font-style: italic;
+  font-size: 2rem;
+  margin: 0;
+}

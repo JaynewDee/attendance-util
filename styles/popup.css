@@ -3,12 +3,14 @@ body {
   box-sizing: border-box;
   background-color: black;
   color: white;
+  overflow-y: auto;
+  height: 375px;
 }
 
 .popup-container {
   width: 300px;
-  overflow-y: auto;
   padding: 1rem;
+  margin: 0;
 }
 
 header {
@@ -57,4 +59,24 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.absentee-input-pair {
+  display: flex;
+}
+
+.absentee-input {
+}
+
+.absentee-btn {
+  background: none;
+  color: white;
+  font-size: 1.33rem;
+  cursor: pointer;
+  border: none;
+}
+
+.locked-in {
+  background: none;
+  color: white;
 }

@@ -18,14 +18,14 @@ const cleanup = async (tabId) => {
 
 const detachDebugger = (tabId) => chrome.debugger.detach({ tabId });
 
-chrome.runtime.onMessage.addListener((message) => {
+chrome.runtime.onMessage.addListener((message) =>
   chrome.tabs.query({ active: true }, (tabs) => {
     const tabId = tabs[0].id;
-    const messageTypes = {
+    const messageTypes = Object.freeze({
       init,
       cycle,
       cleanup
-    };
+    });
     return messageTypes[message](tabId);
-  });
-});
+  })
+);

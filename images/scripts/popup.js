@@ -5,14 +5,14 @@ const absenteesBox = document.getElementById("absentees-container");
 window.addEventListener("click", (e) => e.preventDefault());
 
 window.addEventListener("keydown", (e) => {
-  e.key === "Enter" && document.activeElement === runBtn && runBtn.click();
+  e.key === "Enter" && document.activeElement == runBtn && runBtn.click();
 });
 
 const execute = async (_evt) => {
   const names = getAbsenteeValues();
   console.log(getInputMaps(names));
   const numStudents = studentCount.value;
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   await chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: takeAttendance,
@@ -35,7 +35,7 @@ const takeAttendance = async (numStudents) => {
 
 const getAbsenteeValues = () => {
   const absenteeInputs = document.querySelectorAll(".absentee-input");
-  const names = [];
+  let names = [];
   for (let i = 0; i < absenteeInputs.length; i++) {
     names.push(absenteeInputs[i].value);
   }
@@ -88,7 +88,7 @@ const createInputSet = () => {
 const addInputSet = () => {
   const inputSet = createInputSet();
   absenteesBox.prepend(inputSet);
-  return inputSet.querySelector(".absentee-input");
+  return inputSet.querySelector(`.absentee-input`);
 };
 
 const validateInput = (nameStr) => {
@@ -104,7 +104,7 @@ const getCountMap = (arr) =>
   arr.reduce(
     (obj, item) => ({
       ...obj,
-      [item]: obj[item] ? obj[item] + 1 : obj[item] = 1
+      [item]: obj[item] ? obj[item] + 1 : (obj[item] = 1)
     }),
     {}
   );
@@ -115,3 +115,4 @@ const lettArray = (word) => word.split("");
 const getInputMaps = (inputsArr) =>
   inputsArr.map((name) => getCountMap(lettArray(name)));
 
+const compareNames = (name1, name2) => {};

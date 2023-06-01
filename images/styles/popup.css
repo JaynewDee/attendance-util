@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  overflow-y: auto;
+  height: 375px;
+}
+
+.popup-container {
+  width: 300px;
+  padding: 1rem;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+#title {
+  font-style: italic;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.input {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#student-count-input {
+  width: 5rem;
+  font-size: 1.33rem;
+  text-align: center;
+}
+
+#run-btn {
+  cursor: pointer;
+  background: none;
+  color: white;
+  margin: 2rem auto;
+  font-style: italic;
+  border-radius: 3px;
+  padding: 0.66rem 1rem;
+  transition: all 0.33s;
+}
+
+#run-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.absentee-input-pair {
+  display: flex;
+}
+
+.absentee-input {
+}
+
+.absentee-btn {
+  background: none;
+  color: white;
+  font-size: 1.33rem;
+  cursor: pointer;
+  border: none;
+}
+
+.locked-in {
+  background: none;
+  color: white;
+}
